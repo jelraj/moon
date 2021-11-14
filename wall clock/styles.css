@@ -1,90 +1,8 @@
-/* *, *::after, *::before {
-    box-sizing: border-box;
+:root {
+    --bg-black-50: #eff0f4;
+    --inner-shadow: inset 3px 3px 3px #d0d0dd, inset -3px -3px 3px #f8f8f8;
+    --inner-shadow-0: inset 0 0 0 #d0d0d0, inset 0 0 0 #f8f8f8;
 }
-
-body {
-    background: linear-gradient(to right, hsl(200, 100%, 50%), hsl(175, 100%, 50%));
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-}
-
-.clock {
-    width: 300px;
-    height: 300px;
-    background-color: rgba(255, 255, 255, .8);
-    border-radius: 50%;
-    border: 2px solid black;
-    position: relative;
-}
-
-.clock .number {
-    --rotation: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transform: rotate(var(--rotation));
-    font-size: 1.5rem;
-}
-
-.clock .number1 { --rotation: 30deg; }
-.clock .number2 { --rotation: 60deg; }
-.clock .number3 { --rotation: 90deg; }
-.clock .number4 { --rotation: 120deg; }
-.clock .number5 { --rotation: 150deg; }
-.clock .number6 { --rotation: 180deg; }
-.clock .number7 { --rotation: 210deg; }
-.clock .number8 { --rotation: 240deg; }
-.clock .number9 { --rotation: 270deg; }
-.clock .number10 { --rotation: 300deg; }
-.clock .number11 { --rotation: 330deg; }
-
-.clock .hand {
-    --rotation: 0;
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
-    border: 1px solid black;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    transform-origin: bottom;
-    z-index: 10;
-    transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
-}
-
-.clock::after {
-    content: "";
-    position: absolute;
-    background-color: black;
-    z-index: 11;
-    width: 15px;
-    height: 15px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-}
-
-.clock .hand.second {
-    width: 3px;
-    height: 45%;
-    background-color: crimson;
-}
-
-.clock .hand.minute {
-    width: 7px;
-    height: 40%;
-    background-color: black;
-}
-
-.clock .hand.hour {
-    width: 10px;
-    height: 35%;
-    background-color: black;
-} */
 
 *{
     margin: 0;
@@ -101,7 +19,7 @@ body {
 }
 
 body.light {
-    background: #d1dae3;
+    background-color: var(--bg-black-50);
 }
 
 .clock {
@@ -112,22 +30,48 @@ body.light {
     align-items: center;
     background: url(clock.png);
     background-size: cover;
-    border: 10px solid #d1dae3;
     border-radius: 50%;
-    box-shadow:     0 -15px 15px rgba(255, 255, 255, 0.05),
-                    inset 0 -15px 15px rgba(255, 255, 255, 0.05),
-                    0 15px 15px rgba(0, 0, 0, 0.05),
-                    inset 20 20px 20px rgba(0, 0, 0, 0.05);
+}
+
+.clock::after {
+    border-radius: 50%;
 }
 
 body.light .clock {
     background: url(clock.png);
     background-size: cover;
-    border: 10px solid #cad3dc;
-    box-shadow: -8 -8px 15px rgba(255, 255, 255, 0.5),
-                10 10px 10px rgba(0, 0, 0, 0.1),
-                inset -8 -8px 15px rgba(255, 255, 255, 0.5),
-                inset 10 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.outer-shadow {
+    box-shadow: var(--inner-shadow);
+}
+
+.inner-shadow {
+    box-shadow: var(--inner-shadow);
+}
+
+.hover-in-shadow {
+    position: relative;
+    z-index: 1;
+}
+
+.hover-in-shadow:hover {
+    box-shadow: var(--outer-shadow-0);
+}
+
+.hover-in-shadow:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.hover-in-shadow:hover:after {
+    box-shadow: var(--inner-shadow);
 }
 
 .clock::before {
@@ -172,7 +116,6 @@ body.light .clock::before {
 .hr, .mn, .sc {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     position: absolute;
     border-radius: 50%;
 }
@@ -219,7 +162,7 @@ body.light .mn::before {
     height: 20px;
     font-size: 18px;
     border-radius: 50%;
-    background: #d1dae3;
+    background: #2b2c2f;
     color: #d1dae3;
     font-family: consolas;
     cursor: pointer;
@@ -257,14 +200,13 @@ body.light .mn::before {
 }
 
 body.light .toggleClass {
-    background: #091921;
+    background: #353535;
     color: #091921;
 }
 
 body.light .toggleClass::before {
     content: 'Dark Mode';
     white-space: nowrap;
-
 }
 
 
